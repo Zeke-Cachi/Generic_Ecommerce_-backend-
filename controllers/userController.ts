@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import Users from "../models/userModel.js";
+import { injectable } from "tsyringe";
 
-class userController {
+class UserController {
   async getUsers(req: Request, res: Response) {
     console.log("users!");
   }
@@ -18,4 +19,4 @@ class userController {
   }
 }
 
-export default new userController();
+export default new UserController();

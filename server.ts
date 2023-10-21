@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import userRouter from "./routes/userRouter";
+import UserRouter from "./routes/userRouter";
 import productsRouter from "./routes/productsRouter";
 import dotenv from "dotenv";
 dotenv.config();
@@ -28,7 +28,7 @@ class Server {
   }
 
   configureRoutes() {
-    this.app.use("/", userRouter);
+    this.app.use("/", UserRouter);
     this.app.use("/", productsRouter);
   }
 
