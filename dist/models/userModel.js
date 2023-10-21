@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 import mongoosePaginate from "mongoose-paginate-v2";
 const userSchema = new Schema({
-    _id: {
-        type: Schema.Types.ObjectId,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
@@ -17,23 +13,23 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        default: "noemail@noemail.com",
     },
-    password: {
+    profileImg: {
         type: String,
-        required: true,
     },
     cart: [
         {
-            _id: Schema.Types.ObjectId,
+            product: {
+                type: Schema.Types.ObjectId,
+                ref: "Products",
+            },
             quantity: {
                 type: Number,
                 default: 0,
             },
-            ref: "Products",
         },
     ],
 });
 userSchema.plugin(mongoosePaginate);
-const Users = mongoose.model("user", userSchema);
+const Users = model("Users", userSchema);
 export default Users;

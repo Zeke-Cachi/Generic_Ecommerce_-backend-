@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 import mongoosePaginate from "mongoose-paginate-v2";
 
 const productsSchema = new Schema({
@@ -15,7 +15,6 @@ const productsSchema = new Schema({
   },
   description: {
     type: String,
-    required: false,
     default: "No description provided",
   },
   category: {
@@ -28,8 +27,6 @@ const productsSchema = new Schema({
   },
   rating: {
     rate: Number,
-    required: false,
-    default: -1,
   },
   stock: {
     type: Number,
@@ -39,6 +36,6 @@ const productsSchema = new Schema({
 
 productsSchema.plugin(mongoosePaginate);
 
-const Users = mongoose.model("product", productsSchema);
+const Products = model("Products", productsSchema);
 
-export default Users;
+export default Products;
