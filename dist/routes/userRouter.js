@@ -10,6 +10,7 @@ class UserRouter {
     configureRoutes() {
         this.router.get("/users", this.userController.getUsers);
         this.router.post("/users/create", this.userController.createUsers);
+        this.router.put("/users/updateprofileimage/:id", this.userController.updateProfileImage);
     }
     getRouter() {
         return this.router;
