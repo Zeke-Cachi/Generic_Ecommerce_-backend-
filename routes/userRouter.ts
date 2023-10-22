@@ -1,9 +1,10 @@
 import express, { Router } from "express";
-import UserController from "../controllers/userController";
+import UserController from "../controllers/userController.js";
+import { container } from "tsyringe";
 
 class UserRouter {
   private router: Router = express.Router();
-  private userController = UserController;
+  private userController = container.resolve(UserController);
 
   constructor() {
     this.configureRoutes();

@@ -1,7 +1,23 @@
-import express from "express";
-const productsRouter = express.Router();
-import productsController from "../controllers/productsController.js";
+import express, { Router } from "express";
+import { container } from "tsyringe";
+import ProductsController from "../controllers/productsController.js";
 
-productsRouter.get("/products", productsController.getProducts);
+class ProductRouter {
+  private router: Router = Router();
+  private productsController = container.resolve(ProductsController);
 
-export default productsRouter;
+  constructor() {
+    this.configureRoutes();
+  }
+
+  private configureRoutes() {
+    this.router.get("/products", this.productsController.getProducts);
+    this.router.post("/products/create", this.productsController.postProducts);
+  }
+
+  public getRouter() {
+    return this.router;
+  }
+}
+
+export default new ProductRouter().getRouter();

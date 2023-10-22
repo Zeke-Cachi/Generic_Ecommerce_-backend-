@@ -6,9 +6,7 @@ dotenv.config();
 const MONGO_URI = process.env.DB_CONNECT;
 
 class Database {
-  constructor() {
-    this.connect();
-  }
+  constructor() {}
 
   async connect() {
     try {

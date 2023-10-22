@@ -2,9 +2,15 @@ import { Request, Response } from "express";
 import Users from "../models/userModel.js";
 import { injectable } from "tsyringe";
 
+@injectable()
 class UserController {
   async getUsers(req: Request, res: Response) {
-    console.log("users!");
+    try {
+      const response = await Users.find();
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(400).json(error);
+    }
   }
 
   async createUsers(req: Request, res: Response) {
@@ -19,4 +25,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default UserController;
