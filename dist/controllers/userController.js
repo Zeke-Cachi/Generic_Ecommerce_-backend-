@@ -29,13 +29,16 @@ let UserController = class UserController {
         }
     }
     async updateProfileImage(req, res) {
-        const id = req.params;
+        const { id } = req.params;
         const profileImageURL = req.body;
+        console.log(id);
+        console.log(profileImageURL);
         try {
             const selectedUser = await Users.findByIdAndUpdate(id, profileImageURL);
             res.status(200).json(selectedUser);
         }
         catch (error) {
+            console.log(error);
             res.status(400).json(error);
         }
     }
