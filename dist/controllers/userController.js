@@ -16,6 +16,18 @@ let UserController = class UserController {
             res.status(400).json(error);
         }
     }
+    async getUsersByEmail(req, res) {
+        const { email } = req.params;
+        try {
+            const response = await Users.find({ email });
+            console.log(response);
+            res.status(200).json(response);
+        }
+        catch (error) {
+            console.error(error);
+            res.status(400).json(error);
+        }
+    }
     async createUsers(req, res) {
         console.log(req.body);
         try {

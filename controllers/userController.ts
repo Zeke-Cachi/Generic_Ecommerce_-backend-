@@ -13,6 +13,18 @@ class UserController {
     }
   }
 
+  async getUsersByEmail(req: Request, res: Response) {
+    const { email } = req.params;
+    try {
+      const response = await Users.find({ email });
+      console.log(response);
+      res.status(200).json(response);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json(error);
+    }
+  }
+
   async createUsers(req: Request, res: Response) {
     console.log(req.body);
     try {

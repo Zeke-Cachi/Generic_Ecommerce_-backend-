@@ -12,6 +12,7 @@ class UserRouter {
 
   private configureRoutes() {
     this.router.get("/users", this.userController.getUsers);
+    this.router.get('/users/getbyemail/:email', this.userController.getUsersByEmail)
     this.router.post("/users/create", this.userController.createUsers);
     this.router.put(
       "/users/updateprofileimage/:id",
