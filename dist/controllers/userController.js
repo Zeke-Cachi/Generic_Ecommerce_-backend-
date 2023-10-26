@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import Users from "../models/userModel.js";
 import { injectable } from "tsyringe";
 let UserController = class UserController {
-    async getUsers(req, res) {
+    async getUsers(_req, res) {
         try {
             const response = await Users.find();
             res.status(200).json(response);
@@ -43,10 +43,9 @@ let UserController = class UserController {
     async updateProfileImage(req, res) {
         const { id } = req.params;
         const profileImageURL = req.body;
-        console.log(id);
-        console.log(profileImageURL);
         try {
             const selectedUser = await Users.findByIdAndUpdate(id, profileImageURL);
+            console.log(selectedUser);
             res.status(200).json(selectedUser);
         }
         catch (error) {

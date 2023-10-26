@@ -17,16 +17,9 @@ const productsSchema = new Schema({
     type: String,
     default: "No description provided",
   },
-  category: {
-    type: String,
-    required: true,
-  },
   image: {
     type: String,
     required: true,
-  },
-  rating: {
-    rate: Number,
   },
   stock: {
     type: Number,

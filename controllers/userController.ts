@@ -4,7 +4,7 @@ import { injectable } from "tsyringe";
 
 @injectable()
 class UserController {
-  async getUsers(req: Request, res: Response) {
+  async getUsers(_req: Request, res: Response) {
     try {
       const response = await Users.find();
       res.status(200).json(response);
@@ -40,10 +40,9 @@ class UserController {
   async updateProfileImage(req: Request, res: Response) {
     const { id } = req.params;
     const profileImageURL = req.body;
-    console.log(id);
-    console.log(profileImageURL);
     try {
       const selectedUser = await Users.findByIdAndUpdate(id, profileImageURL);
+      console.log(selectedUser);
       res.status(200).json(selectedUser);
     } catch (error) {
       console.log(error);
