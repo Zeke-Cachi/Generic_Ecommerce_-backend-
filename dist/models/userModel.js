@@ -29,6 +29,7 @@ const userSchema = new Schema({
             },
         },
     ],
+    uploadedProducts: [{ _id: Schema.Types.ObjectId }],
 });
 userSchema.plugin(mongoosePaginate);
 const Users = model("Users", userSchema);

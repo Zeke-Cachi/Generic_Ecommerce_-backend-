@@ -15,6 +15,7 @@ class productsController {
 
   async postProducts(req: Request, res: Response) {
     try {
+      console.log(req.body);
       const newProduct = new Products(req.body);
       newProduct.save();
       res.status(201).json(newProduct);

@@ -17,7 +17,6 @@ class UserController {
     const { email } = req.params;
     try {
       const response = await Users.find({ email });
-      console.log(response);
       res.status(200).json(response);
     } catch (error) {
       console.error(error);
@@ -26,7 +25,6 @@ class UserController {
   }
 
   async createUsers(req: Request, res: Response) {
-    console.log(req.body);
     try {
       const newUser = new Users(req.body);
       newUser.save();
@@ -42,7 +40,6 @@ class UserController {
     const profileImageURL = req.body;
     try {
       const selectedUser = await Users.findByIdAndUpdate(id, profileImageURL);
-      console.log(selectedUser);
       res.status(200).json(selectedUser);
     } catch (error) {
       console.log(error);

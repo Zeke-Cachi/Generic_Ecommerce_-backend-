@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 import mongoosePaginate from "mongoose-paginate-v2";
 
 const productsSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+  userId: Schema.Types.ObjectId,
   title: {
     type: String,
     required: true,
