@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { injectable } from "tsyringe";
 import Products from "../models/productsModel.js";
+import Users from "../models/userModel.js";
 let productsController = class productsController {
     async getProducts(req, res) {
         try {
@@ -18,10 +19,15 @@ let productsController = class productsController {
     }
     async postProducts(req, res) {
         try {
-            console.log(req.body);
             const newProduct = new Products(req.body);
-            newProduct.save();
-            res.status(201).json(newProduct);
+            await newProduct.save();
+            console.log(`Just checking newProduct._id: ${newProduct._id}`);
+            const saveId = await Users.findByIdAndUpdate(newProduct.userId, {
+                $push: { uploadedProducts: { _id: newProduct._id } },
+            }, { new: true });
+            console.log(`Just checking saveId: ${saveId}`);
+            const finalResponse = await Promise.all([newProduct, saveId]);
+            res.status(201).json(finalResponse);
         }
         catch (error) {
             res.status(400).json(error);
@@ -31,4 +37,5 @@ let productsController = class productsController {
 productsController = __decorate([
     injectable()
 ], productsController);
+//aca pasaba de que no mandaba el usuario pero era que no estaba actualizando el archivo .js, fijarse si anda como está, sino hacerlo menos choclo
 export default productsController;
