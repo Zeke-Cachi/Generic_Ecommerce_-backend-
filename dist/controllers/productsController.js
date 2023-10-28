@@ -21,15 +21,14 @@ let productsController = class productsController {
         try {
             const newProduct = new Products(req.body);
             await newProduct.save();
-            console.log(`Just checking newProduct._id: ${newProduct._id}`);
             const saveId = await Users.findByIdAndUpdate(newProduct.userId, {
-                $push: { uploadedProducts: { _id: newProduct._id } },
+                $push: { uploadedProducts: newProduct },
             }, { new: true });
-            console.log(`Just checking saveId: ${saveId}`);
             const finalResponse = await Promise.all([newProduct, saveId]);
             res.status(201).json(finalResponse);
         }
         catch (error) {
+            console.log(error);
             res.status(400).json(error);
         }
     }
@@ -37,5 +36,4 @@ let productsController = class productsController {
 productsController = __decorate([
     injectable()
 ], productsController);
-//aca pasaba de que no mandaba el usuario pero era que no estaba actualizando el archivo .js, fijarse si anda como está, sino hacerlo menos choclo
 export default productsController;

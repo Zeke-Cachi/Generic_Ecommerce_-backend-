@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 const { model } = mongoose;
 import mongoosePaginate from "mongoose-paginate-v2";
+import { productsSchema } from "./productsModel.js";
 
 const userSchema = new Schema({
   name: {
@@ -30,7 +31,7 @@ const userSchema = new Schema({
       },
     },
   ],
-  uploadedProducts: [{ _id: Schema.Types.ObjectId }],
+  uploadedProducts: [productsSchema],
 });
 
 userSchema.plugin(mongoosePaginate);

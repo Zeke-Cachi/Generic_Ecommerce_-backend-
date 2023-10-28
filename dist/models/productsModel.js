@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 import mongoosePaginate from "mongoose-paginate-v2";
-const productsSchema = new Schema({
+export const productsSchema = new Schema({
     userId: Schema.Types.ObjectId,
     title: {
         type: String,
