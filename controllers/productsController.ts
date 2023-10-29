@@ -4,20 +4,11 @@ import { injectable } from "tsyringe";
 import Products from "../models/productsModel.js";
 import Users from "../models/userModel.js";
 
-interface IUsers {
-  name: string;
-  lastname: string;
-  email: string;
-  profileImg: string;
-  cart?: [{ product: {}; quantity: number }];
-  uploadedProducts?: [{ _id: mongoose.Schema.Types.ObjectId }];
-}
-
 @injectable()
 class productsController {
   async getProducts(req: Request, res: Response) {
     try {
-      const response = await Products.find();
+      const response = await Products.aggregate([{ $sample: { size: 25 } }]);
       res.status(200).json(response);
     } catch (error) {
       res.status(400).json(error);

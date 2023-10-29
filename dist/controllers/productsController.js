@@ -10,7 +10,7 @@ import Users from "../models/userModel.js";
 let productsController = class productsController {
     async getProducts(req, res) {
         try {
-            const response = await Products.find();
+            const response = await Products.aggregate([{ $sample: { size: 25 } }]);
             res.status(200).json(response);
         }
         catch (error) {
