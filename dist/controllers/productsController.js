@@ -32,6 +32,19 @@ let productsController = class productsController {
             res.status(400).json(error);
         }
     }
+    async generalSearch(req, res) {
+        const query = req.query.query;
+        try {
+            const results = await Products.find({
+                $text: { $search: query },
+            });
+            res.status(200).json(results);
+        }
+        catch (error) {
+            res.status(400).json(error);
+            console.log(error);
+        }
+    }
 };
 productsController = __decorate([
     injectable()

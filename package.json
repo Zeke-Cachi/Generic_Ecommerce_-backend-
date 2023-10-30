@@ -30,6 +30,7 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@types/mongoose-paginate-v2": "^1.6.5",
     "ts-node-dev": "^2.0.0"
   }
 }

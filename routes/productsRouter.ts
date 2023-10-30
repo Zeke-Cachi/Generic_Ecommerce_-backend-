@@ -13,6 +13,11 @@ class ProductRouter {
   private configureRoutes() {
     this.router.get("/products", this.productsController.getProducts);
     this.router.post("/products", this.productsController.postProducts);
+
+    this.router.get(
+      "/products/generalsearch/",
+      this.productsController.generalSearch
+    );
   }
 
   public getRouter() {

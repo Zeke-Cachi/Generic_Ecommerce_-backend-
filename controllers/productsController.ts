@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import mongoose from "mongoose";
 import { injectable } from "tsyringe";
 import Products from "../models/productsModel.js";
 import Users from "../models/userModel.js";
@@ -31,6 +30,19 @@ class productsController {
     } catch (error) {
       console.log(error);
       res.status(400).json(error);
+    }
+  }
+
+  async generalSearch(req: Request, res: Response) {
+    const query = req.query.query;
+    try {
+      const results = await Products.find({
+        $text: { $search: query } as any,
+      });
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(400).json(error);
+      console.log(error);
     }
   }
 }
