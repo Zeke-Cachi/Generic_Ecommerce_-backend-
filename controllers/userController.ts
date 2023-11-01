@@ -35,6 +35,23 @@ class UserController {
     }
   }
 
+  async saveCartItems(req: Request, res: Response) {
+    const { email, cart } = req.body;
+    console.log(cart.length);
+
+    try {
+      const createOrUpdateCartArray = await Users.findOneAndUpdate(
+        { email },
+        { $set: { cart } },
+        { upsert: true }
+      );
+      res.status(200).json(createOrUpdateCartArray);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json(error);
+    }
+  }
+
   async updateProfileImage(req: Request, res: Response) {
     const { id } = req.params;
     const profileImageURL = req.body;

@@ -25,6 +25,11 @@ export const productsSchema = new Schema({
     type: Number,
     required: true,
   },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 productsSchema.index({ title: "text" }, { name: "productSearchIndex" });

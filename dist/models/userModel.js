@@ -18,18 +18,7 @@ const userSchema = new Schema({
     profileImg: {
         type: String,
     },
-    cart: [
-        {
-            product: {
-                type: Schema.Types.ObjectId,
-                ref: "Products",
-            },
-            quantity: {
-                type: Number,
-                default: 0,
-            },
-        },
-    ],
+    cart: [productsSchema],
     uploadedProducts: [productsSchema],
 });
 userSchema.plugin(mongoosePaginate);
