@@ -11,6 +11,7 @@ export const productsSchema = new Schema({
     price: {
         type: Number,
         required: true,
+        default: 0,
     },
     description: {
         type: String,
@@ -23,6 +24,7 @@ export const productsSchema = new Schema({
     stock: {
         type: Number,
         required: true,
+        default: 1,
     },
     quantity: {
         type: Number,
