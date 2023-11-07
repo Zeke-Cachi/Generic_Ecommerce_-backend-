@@ -37,8 +37,6 @@ class UserController {
 
   async saveCartItems(req: Request, res: Response) {
     const { email, cart } = req.body;
-    console.log(cart.length);
-
     try {
       const createOrUpdateCartArray = await Users.findOneAndUpdate(
         { email },

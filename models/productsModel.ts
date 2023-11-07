@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
-import paginate from "mongoose-paginate-v2";
 
 export const productsSchema = new Schema({
   userId: Schema.Types.ObjectId,
@@ -35,8 +34,6 @@ export const productsSchema = new Schema({
 });
 
 productsSchema.index({ title: "text" }, { name: "productSearchIndex" });
-
-productsSchema.plugin(paginate);
 
 const Products = model("Products", productsSchema);
 
