@@ -25,6 +25,9 @@ class Server {
       headers: "*",
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
+      exposedHeaders:
+        "Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods",
+      optionsSuccessStatus: 200,
     };
     this.app.use(cors(corsConfig));
   }
