@@ -21,12 +21,11 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(morgan("dev"));
     const corsConfig = {
-      origin: "https://generic-ecommerce-five.vercel.app/",
+      origin: "https://generic-ecommerce-five.vercel.app",
       headers: "*",
       methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
-      exposedHeaders:
-        "Access-Control-Allow-Origin,Access-Control-Allow-Headers,Access-Control-Allow-Methods",
+      allowedHeaders: "Content-type, Authorization",
       optionsSuccessStatus: 200,
     };
     this.app.use(cors(corsConfig));
