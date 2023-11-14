@@ -22,6 +22,8 @@ class Server {
     this.app.use(morgan("dev"));
     const corsConfig = {
       origin: "https://generic-ecommerce-five.vercel.app/",
+      headers: "*",
+      methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
       credentials: true,
     };
     this.app.use(cors(corsConfig));
