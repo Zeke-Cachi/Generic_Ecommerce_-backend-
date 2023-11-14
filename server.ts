@@ -21,23 +21,25 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(morgan("dev"));
     const corsConfig = {
-      origin: (
-        origin: string | undefined,
-        callback: (err: Error | null, allow?: boolean) => void
-      ) => {
-        const allowedOrigins = ["https://generic-ecommerce-five.vercel.app"];
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      methods: "GET,HEAD,PUT,POST,DELETE,OPTIONS",
-      allowedHeaders: "Content-Type, Authorization",
-      credentials: true,
-      optionsSuccessStatus: 200,
+      origin: "https://generic-ecommerce-five.vercel.app",
     };
     this.app.use(cors(corsConfig));
+    this.app.use((_req, res, next) => {
+      res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://generic-ecommerce-five.vercel.app"
+      );
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, DELETE, OPTIONS"
+      );
+      res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Content-Type, Authorization"
+      );
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      next();
+    });
   }
 
   configureRoutes() {
