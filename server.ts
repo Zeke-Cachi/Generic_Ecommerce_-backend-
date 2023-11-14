@@ -21,25 +21,12 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(morgan("dev"));
     const corsConfig = {
-      origin: "https://generic-ecommerce-five.vercel.app",
+      origin: "https://genericecommerce-backend-production.up.railway.app",
+      methods: "GET, POST, PUT, DELETE",
+      allowedHeaders: "Content-type, Authorization",
+      credentials: true,
     };
     this.app.use(cors(corsConfig));
-    this.app.use((_req, res, next) => {
-      res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://generic-ecommerce-five.vercel.app"
-      );
-      res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, OPTIONS"
-      );
-      res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization"
-      );
-      res.setHeader("Access-Control-Allow-Credentials", "true");
-      next();
-    });
   }
 
   configureRoutes() {
