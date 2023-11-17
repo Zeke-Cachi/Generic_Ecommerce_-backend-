@@ -21,7 +21,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(morgan("dev"));
     const corsConfig = {
-      origin: "http://localhost:3000",
+      origin: "https://genericecommerce-backend-production.up.railway.app/",
       methods: "GET, POST, PUT, DELETE",
       allowedHeaders: "Content-type, Authorization",
       credentials: true,
