@@ -16,6 +16,7 @@ class UserRouter {
         this.router.post("/users/create", RegisterChecks, ValidateChecks, this.userController.createUsers);
         this.router.post("/users/savecart", this.userController.saveCartItems);
         this.router.put("/users/updateprofileimage/:id", this.userController.updateProfileImage);
+        this.router.delete("/users/:userId/deleteuploadedproduct/:productId", this.userController.deleteUploadedProduct);
     }
     getRouter() {
         return this.router;

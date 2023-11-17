@@ -61,6 +61,20 @@ let UserController = class UserController {
             res.status(400).json(error);
         }
     }
+    async deleteUploadedProduct(req, res) {
+        const userId = req.params.userId;
+        const productId = req.params.productId;
+        try {
+            const user = await Users.findByIdAndUpdate(userId, {
+                $pull: { uploadedProducts: { _id: productId } },
+            });
+            user && res.status(200).json(user);
+        }
+        catch (error) {
+            console.log(error);
+            res.status(400).json(error);
+        }
+    }
 };
 UserController = __decorate([
     injectable()

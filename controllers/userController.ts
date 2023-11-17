@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import Users from "../models/userModel.js";
 import { injectable } from "tsyringe";
+import { ObjectId } from "mongoose";
 
 @injectable()
 class UserController {
@@ -56,6 +57,20 @@ class UserController {
     try {
       const selectedUser = await Users.findByIdAndUpdate(id, profileImageURL);
       res.status(200).json(selectedUser);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
+
+  async deleteUploadedProduct(req: Request, res: Response) {
+    const userId = req.params.userId;
+    const productId = req.params.productId;
+    try {
+      const user = await Users.findByIdAndUpdate(userId, {
+        $pull: { uploadedProducts: { _id: productId } },
+      });
+      user && res.status(200).json(user);
     } catch (error) {
       console.log(error);
       res.status(400).json(error);

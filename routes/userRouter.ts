@@ -32,6 +32,10 @@ class UserRouter {
       "/users/updateprofileimage/:id",
       this.userController.updateProfileImage
     );
+    this.router.delete(
+      "/users/:userId/deleteuploadedproduct/:productId",
+      this.userController.deleteUploadedProduct
+    );
   }
 
   public getRouter() {

@@ -19,7 +19,6 @@ let productsController = class productsController {
     }
     async postProducts(req, res) {
         try {
-            console.log(req.body);
             const newProduct = new Products(req.body);
             await newProduct.save();
             const saveId = await Users.findByIdAndUpdate(newProduct.userId, {
